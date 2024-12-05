@@ -21,6 +21,7 @@ import org.apache.servicecomb.config.DynamicProperties;
 import org.apache.servicecomb.provider.rest.common.RestSchema;
 import org.apache.servicecomb.samples.api.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestSchema(schemaId = "ProviderController", schemaInterface = ProviderService.class)
 public class ProviderController implements ProviderService {
@@ -43,5 +44,10 @@ public class ProviderController implements ProviderService {
   @Override
   public String exampleConfig() {
     return example;
+  }
+
+  @Override
+  public String saveFile(int fileType, MultipartFile file) {
+    return fileType + file.getOriginalFilename();
   }
 }

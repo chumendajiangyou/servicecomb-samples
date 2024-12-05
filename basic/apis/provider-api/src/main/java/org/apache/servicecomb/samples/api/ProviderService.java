@@ -17,15 +17,21 @@
 
 package org.apache.servicecomb.samples.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@RequestMapping(path = "/provider")
+@RequestMapping(path = "/provider/")
 public interface ProviderService {
   @GetMapping("/sayHello")
   String sayHello(@RequestParam("name") String name);
 
   @GetMapping("/exampleConfig")
   String exampleConfig();
+
+  @RequestMapping(value = "/saveFile",method = RequestMethod.POST,
+          consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  String saveFile(@RequestAttribute("fileType") int fileType,
+                  @RequestPart("file") MultipartFile file);
 }
+

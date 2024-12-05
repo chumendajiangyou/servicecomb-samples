@@ -35,8 +35,13 @@ servicecomb:
           mappings:
             consumer:
               prefixSegmentCount: 0
-              path: "/.*"
+              path: "/consumer/.*"
               microserviceName: consumer
+              versionRule: 0.0.0+
+            provider:
+              prefixSegmentCount: 0
+              path: "/provider/.*"
+              microserviceName: provider
               versionRule: 0.0.0+
 
 spring:
